@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FAF9F6">
+  <meta name="description" content="KLM Art Space — przestrzeń dla Twojej kreatywności w Toruniu. Prototyp studia fotograficznego.">
+  <title>Rezerwacja — KLM Art Space</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="module" src="../js/app.js"></script>
+</head>
+<body data-page="booking">
+<a class="skip-link" href="#main">Przejdź do treści</a>
+<!-- Shared header: future header.php. Keep the four navigation links in sync across pages. -->
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <div class="header__logo">
+        <a class="brand" href="../" aria-label="KLM Art Space — strona główna">
+          <span class="brand__name">KLM</span><span class="brand__sub">ART<br>SPACE</span>
+        </a>
+      </div>
+      <div class="header__menu">
+        <button class="menu__button" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="main-menu"><span></span></button>
+        <nav class="menu__body" id="main-menu" aria-label="Nawigacja główna">
+          <ul class="menu__list">
+            <li class="menu__list-item"><a class="menu__list-link" href="../#studio" data-goto=".about__section_1">O nas</a></li>
+            <li class="menu__list-item"><a class="menu__list-link" href="../#przestrzen" data-goto=".space__section_2">Przestrzeń</a></li>
+            <li class="menu__list-item"><a class="menu__list-link" href="../#rezerwacja" data-goto=".reservation__section_3">Rezerwacja</a></li>
+            <li class="menu__list-item"><a class="menu__list-link" href="../#kontakt" data-goto=".kontakts__section_4">Kontakt</a></li>
+          </ul>
+        </nav>
+      </div>
+      <a class="button header__button" href="../rezerwacja/">Zarezerwuj studio <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</header>
+<main class="container" id="main">
+  <p class="demo-note">Wersja demonstracyjna · przykładowe terminy · formularz nie wysyła ani nie zapisuje rezerwacji</p>
+  <div class="page-heading" id="booking-heading"><p class="eyebrow">Twoja kolej na tworzenie</p><h1>Zarezerwuj przestrzeń.</h1><p>Wybierz studio, usługę i termin. To wyłącznie podgląd przyszłego procesu.</p></div>
+  <noscript><p>Formularz demonstracyjny wymaga JavaScript. Możesz nadal przeglądać stronę i informacje o studiu.</p></noscript>
+  <div class="booking__inner" id="booking">
+    <div>
+      <ol class="steps" aria-label="Etapy demonstracji"><li aria-current="step"><b>01</b> Studio i termin</li><li><b>02</b> Twoje dane</li><li><b>03</b> Podsumowanie</li></ol>
+      <div data-booking-step="0">
+        <section class="booking-section" aria-labelledby="studio-choice-title"><h2 class="booking__heading" id="studio-choice-title">01 / Wybierz studio</h2>
+          <div class="booking__studios-inner" role="group" aria-label="Wybierz studio"><button type="button" class="slot" data-studio="space-1" aria-pressed="true">Space 1</button><button type="button" class="slot" data-studio="space-2" aria-pressed="false">Space 2</button><button type="button" class="slot" data-studio="space-3" aria-pressed="false">Space 3</button></div>
+        </section>
+        <section class="booking-section" aria-labelledby="service-choice-title"><h2 class="booking__heading" id="service-choice-title">02 / Co chcesz stworzyć?</h2><div class="booking__choices-inner" role="group" aria-label="Wybierz usługę">
+          <button class="choice is-selected" type="button" data-service="0" aria-pressed="true"><span>Wynajem studia fotograficznego<small>Cena i czas trwania do ustalenia</small></span><span class="choice__circle" aria-hidden="true"></span></button>
+          <button class="choice" type="button" data-service="1" aria-pressed="false"><span>Sesje zdjęciowe<small>Cena i czas trwania do ustalenia</small></span><span class="choice__circle" aria-hidden="true"></span></button>
+          <button class="choice" type="button" data-service="2" aria-pressed="false"><span>Warsztaty i wydarzenia<small>Cena i czas trwania do ustalenia</small></span><span class="choice__circle" aria-hidden="true"></span></button>
+        </div></section>
+        <section class="booking-section" aria-labelledby="date-choice-title"><h2 class="booking__heading" id="date-choice-title">03 / Wybierz dzień</h2><div id="booking-calendar"></div></section>
+        <section class="booking-section" aria-labelledby="time-choice-title"><h2 class="booking__heading" id="time-choice-title">04 / Wybierz godzinę</h2><p id="slots-hint">Najpierw wybierz dostępny dzień w kalendarzu.</p><div class="slots" id="booking-slots" role="group" aria-label="Dostępne godziny" hidden></div></section>
+        <button class="button" id="booking-next" type="button" disabled>Dalej: Twoje dane →</button>
+      </div>
+      <form id="booking-details" data-booking-step="1" hidden>
+        <h2 class="booking__heading booking-section">05 / Poznajmy się</h2>
+        <div class="form__inner"><label class="wide">Imię i nazwisko<input name="name" autocomplete="name" required maxlength="100"></label><label>E-mail<input type="email" name="email" autocomplete="email" maxlength="200" required></label><label>Numer telefonu<input type="tel" name="phone" autocomplete="tel" required pattern="[+0-9 ()\-]{7,20}" title="Wpisz od 7 do 20 znaków: cyfry, spacje, +, - lub nawiasy"></label></div>
+        <label class="check"><input type="checkbox" name="demo-consent" required><span>Rozumiem, że to demonstracja. Dane nie zostaną wysłane ani zapisane. Do testowania użyję danych przykładowych.</span></label>
+        <div class="form__actions-inner"><button type="button" class="button button--light" data-back>← Wstecz</button><button class="button" type="submit">Sprawdź podsumowanie →</button></div>
+      </form>
+      <section data-booking-step="2" hidden aria-labelledby="review-heading">
+        <h2 class="booking__heading booking-section" id="review-heading">06 / Podsumowanie demonstracji</h2>
+        <dl class="review-list"><div class="summary__row"><dt>Imię i nazwisko</dt><dd data-customer="name"></dd></div><div class="summary__row"><dt>E-mail</dt><dd data-customer="email"></dd></div><div class="summary__row"><dt>Telefon</dt><dd data-customer="phone"></dd></div></dl>
+        <p class="booking__note">Nic nie zostanie wysłane do studia. Następny krok wyświetli wyłącznie przykładowy status rezerwacji.</p>
+        <div class="form__actions-inner"><button class="button button--light" type="button" data-back>← Wstecz</button><button class="button" type="button" id="booking-submit">Zobacz status demonstracyjny ↗</button></div>
+      </section>
+    </div>
+    <aside class="summary" aria-labelledby="summary-title"><p class="eyebrow">Twój plan na studio</p><h2 id="summary-title">Miejsce na Twój pomysł.</h2>
+      <dl><div class="summary__row"><dt>Studio</dt><dd data-summary="studio">Space 1</dd></div><div class="summary__row"><dt>Usługa</dt><dd data-summary="service">Wynajem studia fotograficznego</dd></div><div class="summary__row"><dt>Termin</dt><dd data-summary="date">Wybierz datę</dd></div><div class="summary__row"><dt>Godziny</dt><dd data-summary="time">Wybierz godzinę</dd></div><div class="summary__row"><dt>Cena</dt><dd>Do ustalenia</dd></div></dl>
+      <p>Cena i czas trwania wymagają ustalenia ze studiem. Pokazane terminy i godziny są przykładowe.</p>
+    </aside>
+  </div>
+  <section class="success" id="booking-result" hidden aria-labelledby="result-title">
+    <div class="success__mark" aria-hidden="true">○</div><p class="eyebrow">Wyłącznie demonstracja</p><h1 id="result-title" tabindex="-1">To tylko podgląd.<br>Nic nie zarezerwowano.</h1>
+    <p>Nie wysłano zgłoszenia ani wiadomości. Nie zapisano danych. W przyszłym systemie prośba będzie czekać na decyzję właściciela.</p>
+    <dl><div class="summary__row"><dt>Studio</dt><dd data-summary="studio"></dd></div><div class="summary__row"><dt>Termin demonstracyjny</dt><dd><span data-summary="date"></span><br><span data-summary="time"></span></dd></div><div class="summary__row"><dt>Przykładowy status</dt><dd>Oczekuje na akceptację — demo</dd></div></dl>
+    <div class="form__actions-inner"><a class="button" href="../">Wróć do studia ↗</a><button class="button button--light" id="booking-restart" type="button">Rozpocznij ponownie</button></div>
+  </section>
+</main>
+<template id="calendar-template">
+  <div class="calendar">
+    <div class="calendar__header"><button type="button" class="icon-button" data-month="-1" aria-label="Poprzedni miesiąc">←</button><span class="calendar__month" aria-live="polite"></span><button type="button" class="icon-button" data-month="1" aria-label="Następny miesiąc">→</button></div>
+    <div class="calendar__grid"><span class="calendar__weekday">Pon</span><span class="calendar__weekday">Wt</span><span class="calendar__weekday">Śr</span><span class="calendar__weekday">Czw</span><span class="calendar__weekday">Pt</span><span class="calendar__weekday">Sob</span><span class="calendar__weekday">Nd</span></div>
+    <div class="calendar__legend"><span>○ Dostępny</span><span>▰ Wybrany / zmieniony</span><span><s>12</s> Niedostępny</span></div>
+  </div>
+</template>
+<!-- Shared footer: future footer.php. -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <p class="footer__text">© 2026 KLM Art Space · Toruń<br>Projekt poglądowy</p>
+      <div class="footer__author"><span lang="en">Website by Andrii Savka</span><span>Kontakt do autora — do uzupełnienia</span></div>
+      <a class="footer__owner" href="../panel/">Panel właściciela ↗</a>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

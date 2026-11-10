@@ -1,0 +1,8 @@
+/* Small reset: presentation belongs in style.css. */
+body, h1, h2, h3, p, figure, ul, ol, fieldset { margin: 0; }
+ul, ol, fieldset { padding: 0; }
+fieldset { border: 0; min-inline-size: 0; }
+button, input, select, textarea { font: inherit; }
+button { color: inherit; }
+img { display: block; max-width: 100%; }
+[hidden] { display: none !important; }

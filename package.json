@@ -1,0 +1,12 @@
+{
+  "name": "klm-art-space",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "preview:subdirectory": "node server.mjs --base=klm-artspace --port=4174",
+    "check": "node --check js/app.js && node --check js/booking.js && node --check js/panel.js && node --check js/calendar.js && node --check js/demo-data.js && node --check server.mjs && node --test tests/*.test.mjs"
+  }
+}

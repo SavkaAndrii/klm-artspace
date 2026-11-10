@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FAF9F6">
+  <meta name="description" content="KLM Art Space — przestrzeń dla Twojej kreatywności w Toruniu. Prototyp studia fotograficznego.">
+  <title>Panel właściciela — KLM Art Space</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="module" src="../js/app.js"></script>
+</head>
+<body data-page="panel">
+<a class="skip-link" href="#main">Przejdź do treści</a>
+<!-- Shared header: future header.php. Keep the four navigation links in sync across pages. -->
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <div class="header__logo">
+        <a class="brand" href="../" aria-label="KLM Art Space — strona główna">
+          <span class="brand__name">KLM</span><span class="brand__sub">ART<br>SPACE</span>
+        </a>
+      </div>
+      <div class="header__menu">
+        <button class="menu__button" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="main-menu"><span></span></button>
+        <nav class="menu__body" id="main-menu" aria-label="Nawigacja główna">
+          <ul class="menu__list">
+            <li class="menu__list-item"><a class="menu__list-link" href="../#studio" data-goto=".about__section_1">O nas</a></li>
+            <li class="menu__list-item"><a class="menu__list-link" href="../#przestrzen" data-goto=".space__section_2">Przestrzeń</a></li>
+            <li class="menu__list-item"><a class="menu__list-link" href="../#rezerwacja" data-goto=".reservation__section_3">Rezerwacja</a></li>
+            <li class="menu__list-item"><a class="menu__list-link" href="../#kontakt" data-goto=".kontakts__section_4">Kontakt</a></li>
+          </ul>
+        </nav>
+      </div>
+      <a class="button header__button" href="../rezerwacja/">Zarezerwuj studio <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</header>
+<main class="container" id="main">
+  <p class="demo-note">Panel właściciela — publiczny prototyp bez logowania. Dane są fikcyjne. Zmiany nie są wysyłane ani zapisywane i znikają po odświeżeniu strony.</p>
+  <noscript><p>Interaktywne funkcje tego podglądu wymagają JavaScript.</p></noscript>
+  <div class="dashboard__inner">
+    <aside class="sidebar"><p class="sidebar__label">TWOJE STUDIO</p><nav aria-label="Sekcje panelu"><button type="button" data-view="overview" aria-current="page">Przegląd</button><button type="button" data-view="availability">Dostępność</button><button type="button" data-view="bookings">Rezerwacje</button><button type="button" data-view="settings">Ustawienia</button></nav></aside>
+    <div class="dashboard__content">
+      <section data-panel-view="overview">
+        <div class="dashboard__title"><div><h1 tabindex="-1">Dzień dobry.</h1><p>Twoja przestrzeń. Wszystko pod kontrolą.</p></div><span class="eyebrow" data-today></span></div>
+        <div class="dashboard__stats-inner"><div class="stat"><span>Nadchodzące rezerwacje</span><strong data-count="upcoming">03</strong></div><div class="stat"><span>Oczekują na decyzję</span><strong data-count="pending">02</strong></div><div class="stat"><span>Dzisiaj w studiu</span><strong data-count="today">00</strong></div></div>
+        <div class="dashboard__columns-inner"><section><h2 class="dashboard__heading">Najbliższe rezerwacje</h2><div data-requests="overview"></div><p class="dashboard__note" id="today-schedule"></p></section><section><h2 class="dashboard__heading">Rzut oka na dostępność</h2><label>Studio<select data-owner-studio><option value="space-1">Space 1</option><option value="space-2">Space 2</option><option value="space-3">Space 3</option></select></label><div id="overview-calendar"></div><button class="text-link dashboard__link" type="button" data-view="availability">Zarządzaj dostępnością ↗</button></section></div>
+      </section>
+      <section data-panel-view="availability" hidden>
+        <div class="dashboard__title"><div><h1 tabindex="-1">Dostępność.</h1><p>Zaplanuj dni, godziny i czas na przygotowanie studia.</p></div></div>
+        <div class="availability"><label>Studio — niezależny grafik demonstracyjny<select data-owner-studio><option value="space-1">Space 1</option><option value="space-2">Space 2</option><option value="space-3">Space 3</option></select></label>
+          <fieldset><legend>Dni robocze</legend><div class="weekdays" id="working-days"><button type="button" data-weekday="0" aria-pressed="true">Pon</button><button type="button" data-weekday="1" aria-pressed="true">Wt</button><button type="button" data-weekday="2" aria-pressed="true">Śr</button><button type="button" data-weekday="3" aria-pressed="true">Czw</button><button type="button" data-weekday="4" aria-pressed="true">Pt</button><button type="button" data-weekday="5" aria-pressed="false">Sob</button><button type="button" data-weekday="6" aria-pressed="false">Nd</button></div></fieldset>
+          <label class="availability__mode">Działanie po wybraniu daty<select id="availability-mode"><option value="block">Zablokuj / odblokuj cały dzień</option><option value="extra">Dodaj / usuń wyjątkową dostępność</option></select></label>
+          <div id="availability-calendar"></div>
+          <form id="hours-form"><div class="availability__controls-inner"><label>Od godziny<input name="start" type="time" value="09:00" required></label><label>Do godziny<input name="end" type="time" value="18:30" required></label><label>Przerwa między rezerwacjami<select name="buffer"><option value="0">0 minut</option><option value="15">15 minut</option><option value="30" selected>30 minut</option><option value="45">45 minut</option><option value="60">60 minut</option></select></label><label>Zablokowana godzina<select name="blockedSlot"><option value="">Brak</option><option>09:00–11:00</option><option>11:30–13:30</option><option>14:00–16:00</option><option>16:30–18:30</option></select></label></div><p class="dashboard__note">Dotyczy wyłącznie wybranego studia w tej demonstracji. Bez zapisu i bez połączenia z publicznym formularzem na innej stronie.</p><button class="button" type="submit">Zastosuj w podglądzie ↗</button></form>
+        </div>
+      </section>
+      <section data-panel-view="bookings" hidden><div class="dashboard__title"><div><h1 tabindex="-1">Rezerwacje.</h1><p>Wyłącznie fikcyjne zgłoszenia i przykładowe dane kontaktowe.</p></div></div><div data-requests="bookings"></div></section>
+      <section data-panel-view="settings" hidden>
+        <div class="dashboard__title"><div><h1 tabindex="-1">Ustawienia.</h1><p>Usługi, ceny i zasady Twojej przestrzeni.</p></div></div>
+        <form id="settings-form" class="settings-form">
+          <label>Studio<select data-owner-studio><option value="space-1">Space 1</option><option value="space-2">Space 2</option><option value="space-3">Space 3</option></select></label>
+          <section class="settings-service"><h2 class="dashboard__heading">Wynajem studia fotograficznego</h2><div class="form__inner"><label>Czas trwania (minuty)<input name="duration0" type="number" min="15" step="15" placeholder="Do ustalenia"></label><label>Cena (zł)<input name="price0" type="number" min="0" step="0.01" placeholder="Do ustalenia"></label></div></section>
+          <section class="settings-service"><h2 class="dashboard__heading">Sesje zdjęciowe</h2><div class="form__inner"><label>Czas trwania (minuty)<input name="duration1" type="number" min="15" step="15" placeholder="Do ustalenia"></label><label>Cena (zł)<input name="price1" type="number" min="0" step="0.01" placeholder="Do ustalenia"></label></div></section>
+          <section class="settings-service"><h2 class="dashboard__heading">Warsztaty i wydarzenia</h2><div class="form__inner"><label>Czas trwania (minuty)<input name="duration2" type="number" min="15" step="15" placeholder="Do ustalenia"></label><label>Cena (zł)<input name="price2" type="number" min="0" step="0.01" placeholder="Do ustalenia"></label></div></section>
+          <h2 class="dashboard__heading">Zasady rezerwacji</h2><div class="form__inner"><label>Minimalne wyprzedzenie (godziny)<input name="notice" type="number" min="0" placeholder="Do ustalenia"></label><label>Sposób potwierdzenia<select name="approval"><option value="manual">Akceptacja właściciela</option><option value="automatic">Automatycznie — podgląd</option></select></label></div>
+          <p class="dashboard__note">To ustawienia demonstracyjne. Ceny i reguły nie są ofertą handlową ani trwałą konfiguracją.</p><button class="button" type="submit">Zastosuj ustawienia w podglądzie ↗</button>
+        </form>
+      </section>
+    </div>
+  </div>
+</main>
+<template id="calendar-template">
+  <div class="calendar">
+    <div class="calendar__header"><button type="button" class="icon-button" data-month="-1" aria-label="Poprzedni miesiąc">←</button><span class="calendar__month" aria-live="polite"></span><button type="button" class="icon-button" data-month="1" aria-label="Następny miesiąc">→</button></div>
+    <div class="calendar__grid"><span class="calendar__weekday">Pon</span><span class="calendar__weekday">Wt</span><span class="calendar__weekday">Śr</span><span class="calendar__weekday">Czw</span><span class="calendar__weekday">Pt</span><span class="calendar__weekday">Sob</span><span class="calendar__weekday">Nd</span></div>
+    <div class="calendar__legend"><span>○ Dostępny</span><span>▰ Wybrany / zmieniony</span><span><s>12</s> Niedostępny</span></div>
+  </div>
+</template>
+<template id="request-template"><article class="booking-row"><div><h3 class="booking-row__name"></h3><p class="booking-row__details"></p><p class="booking-row__contact" hidden></p><div class="request__actions"><button type="button" class="button" data-action="approved">Akceptuj</button><button type="button" class="button button--light" data-action="rejected">Odrzuć</button><button type="button" class="button button--light" data-action="edit">Zmień termin</button><button type="button" class="button button--light" data-action="cancelled">Anuluj</button></div></div><span class="status"></span></article></template>
+<dialog class="edit-dialog" id="edit-dialog" aria-labelledby="edit-title"><form id="edit-form"><h2 class="dashboard__heading" id="edit-title">Zmień przykładowy termin</h2><label>Data<input name="date" type="date" required></label><label>Godziny<select name="time"><option>09:00–11:00</option><option>11:30–13:30</option><option>14:00–16:00</option><option>16:30–18:30</option></select></label><div class="form__actions-inner"><button type="button" class="button button--light" id="close-dialog">Wróć</button><button class="button" type="submit">Zastosuj</button></div></form></dialog>
+<!-- Shared footer: future footer.php. -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <p class="footer__text">© 2026 KLM Art Space · Toruń<br>Projekt poglądowy</p>
+      <div class="footer__author"><span lang="en">Website by Andrii Savka</span><span>Kontakt do autora — do uzupełnienia</span></div>
+      <a class="footer__owner" href="../panel/">Panel właściciela ↗</a>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
