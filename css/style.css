@@ -1597,3 +1597,71 @@ dl { margin: 0; }
 @media (max-width: 43.75rem) {
   .kontakts { min-height: calc(100svh - 5.1875rem); }
 }
+/* =========================================================
+   K.L.M. Art Space — homepage additions (2026)
+   Pricing, equipment and booking policies.
+   ========================================================= */
+:where(.pricing, .rules, .space__equipment) { overflow-wrap: break-word; }
+:where(.pricing, .rules) strong { color: var(--ink); font-weight: 600; }
+:where(.pricing, .rules) h3 { font-family: var(--serif); font-size: clamp(1.45rem, 2.5vw, 2rem); letter-spacing: -.025em; }
+:where(.pricing, .rules) h4 { font-size: .875rem; font-weight: 600; margin-bottom: .75rem; }
+:where(.pricing, .rules) p { font-size: .875rem; line-height: 1.85; }
+
+/* Studio equipment inside the third tab */
+.space__equipment { margin-top: 2.75rem; padding: clamp(1.5rem, 3vw, 2.75rem); background: var(--sand); }
+.space__equipment h4 { font-size: .9375rem; font-weight: 600; margin: 0 0 1rem; }
+.space__equipment h4:not(:first-child) { margin-top: 2rem; }
+.space__equipment ul { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; }
+.space__equipment li { border-top: 1px solid #d7d4cc; padding: .875rem 0; font-size: .8125rem; line-height: 1.6; }
+.space__equipment p { max-width: 65rem; font-size: .8125rem; line-height: 1.8; margin: 0 0 1rem; }
+.space__equipment strong { color: var(--ink); }
+.space__panel-heading-inner > div { min-width: 0; }
+.space__tabs { overflow-x: auto; scrollbar-width: thin; }
+.space__tab { flex: 0 0 auto; white-space: nowrap; }
+
+/* Pricing section */
+.pricing { border-top: 1px solid var(--line); }
+.pricing__inner > .section__head > p { max-width: 25rem; font-size: .8125rem; line-height: 1.8; }
+.pricing__block { display: grid; grid-template-columns: minmax(13rem, .75fr) minmax(0, 1.25fr); column-gap: clamp(2rem, 6vw, 6rem); row-gap: .75rem; padding: clamp(2rem, 4vw, 3.5rem) 0; border-top: 1px solid var(--line); }
+.pricing__block:last-child { border-bottom: 1px solid var(--line); }
+.pricing__block > h3 { grid-column: 1; grid-row: 1 / span 8; max-width: 18rem; }
+.pricing__block > :not(h3) { grid-column: 2; margin: 0; }
+.pricing__columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin: .5rem 0 1rem !important; }
+.pricing__columns > div { padding: 1.5rem; background: var(--sand); }
+.pricing__columns p { color: var(--ink); font-size: .8125rem; line-height: 2; }
+
+/* Reservation rules */
+.rules { border-top: 1px solid var(--line); }
+.rules__inner { max-width: 58rem; margin-inline: auto; }
+.rules__inner > .eyebrow { margin-bottom: 1.25rem; }
+.rules__inner > h2 { margin-bottom: 2rem; }
+.rules__inner > p { max-width: 48rem; margin-bottom: 1.5rem; }
+.rules__list { counter-reset: rule; list-style: none; padding: 0; margin: 2.5rem 0; border-top: 1px solid var(--line); }
+.rules__list li { counter-increment: rule; position: relative; padding: 1.5rem 0 1.5rem 3.75rem; border-bottom: 1px solid var(--line); font-size: .875rem; line-height: 1.8; color: var(--muted); }
+.rules__list li::before { content: counter(rule, decimal-leading-zero); position: absolute; top: 1.55rem; left: 0; color: var(--accent); font-size: .75rem; letter-spacing: .08em; }
+
+/* Consistent contact links and readable long booking note */
+.kontakts__details a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: .25rem; }
+.reservation__note { max-width: 43rem; margin-inline: auto; line-height: 1.8; }
+:where(.pricing, .rules, .space__equipment) :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media (hover: hover) { .kontakts__details a:hover { color: var(--accent); } }
+
+@media (max-width: 62.5rem) {
+  .pricing__block { grid-template-columns: minmax(10rem, .7fr) minmax(0, 1.3fr); column-gap: 2rem; }
+  .pricing__columns { grid-template-columns: 1fr; gap: .75rem; }
+}
+@media (max-width: 43.75rem) {
+  .space__tabs { gap: 1.25rem; margin-right: calc(-1 * var(--space)); padding-right: var(--space); }
+  .space__tab { font-size: .75rem; }
+  .space__equipment { margin-top: 2rem; padding: 1.25rem; }
+  .space__equipment ul { grid-template-columns: 1fr; }
+  .pricing__block { display: block; padding-block: 2rem; }
+  .pricing__block > h3 { max-width: none; margin-bottom: 1.25rem; }
+  .pricing__block > :not(h3) { margin-bottom: 1rem; }
+  .pricing__columns { grid-template-columns: 1fr; }
+  .pricing__columns > div { padding: 1.25rem; }
+  .rules__list li { padding-left: 2.75rem; }
+  .rules__inner > h2 { margin-bottom: 1.5rem; }
+  .kontakts__details { grid-template-columns: 1fr; }
+}
+
